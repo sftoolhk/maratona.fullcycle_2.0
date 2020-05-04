@@ -1,1 +1,78 @@
+# Desafio 1
 
+Instalação e preparação do ambiente
+
+O primeiro passo para que você consiga acompanhar muito bem a Maratona é ter o seu ambiente de desenvolvimento pronto para conseguir simular tudo que te apresentaremos nos próximos vídeos. Nesse ponto o que você deve fazer como desafio será:
+
+1. Instalar o Node.js em seu computador
+--
+dnf install nodejs
+npm install express
+dnf config-manager --set-enabled updates-testing
+
+2. Criar um webserver que escuta na porta 3000
+--
+vim http_demo_server.js
+
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('NodeJS');
+}).listen(3000, "127.0.0.1");
+console.log('Server running at http://127.0.0.1:3000/');
+
+node --inspect http_demo_server.js
+
+3. Ao acessar o webserver, a seguinte mesagem deverá aparecer: "Maratona Full Cycle 2.0"
+--
+netstat -nptl
+kill -9 <pid>
+
+vim http_demo_server.js
+
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Maratona Full Cycle 2.0');
+  }).listen(3000, "127.0.0.1");
+console.log('Server running at http://127.0.0.1:3000/');
+
+node --inspect http_demo_server.js
+
+http://127.0.0.1:300
+
+4. Instalar o Docker em seu computador
+--
+grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0" --make-default
+grubby --args="user_namespace.enable=1" --update-kernel="$(grubby --default-kernel)"
+
+sudo dnf -y install docker docker-compose
+
+5. Gerar uma imagem Docker dessa aplicação a partir da imagem node:14.1-alpine.
+--
+docker login
+username:
+password:
+sudo systemctl start docker
+sudo docker pull sftool/node:14.1-alpine
+
+6. Publicar a imagem no Dockerhub
+--
+docker login
+username:
+password:
+
+docker images
+
+docker tag <existing-image> <hub-user>/<repo-name>[:<tag>]
+docker tag 0854fcfc1637 sftool/node:14.1-alpine
+
+docker push <docker id>/http_demo_server.js
+docker push sftool/node:14.1-alpine
+
+7. Quando executarmos: docker run -p 3000:3000 seu-login-docker/nome-da-sua-imagem deveremos ver a mensagem na porta 3000 de nosso browser
+--
+docker run -p 3000:3000 sftool/node:14.1-alpine
+
+8. Postar nos comentários do vídeo a URL da sua imagem para que possamos executar
+--
