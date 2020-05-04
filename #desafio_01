@@ -6,7 +6,8 @@ O primeiro passo para que você consiga acompanhar muito bem a Maratona é ter o
 
 1. Instalar o Node.js em seu computador
 --
-dnf install nodejs
+dnf install -y nodejs
+dnf install -y grubby
 npm install express
 dnf config-manager --set-enabled updates-testing
 
@@ -39,7 +40,7 @@ console.log('Server running at http://127.0.0.1:3000/');
 
 node --inspect http_demo_server.js
 
-http://127.0.0.1:300
+http://127.0.0.1:3000
 
 4. Instalar o Docker em seu computador
 --
@@ -53,8 +54,9 @@ sudo dnf -y install docker docker-compose
 docker login
 username:
 password:
+
 sudo systemctl start docker
-sudo docker pull sftool/node:14.1-alpine
+sudo docker pull node:14.1-alpine
 
 6. Publicar a imagem no Dockerhub
 --
@@ -76,3 +78,8 @@ docker run -p 3000:3000 sftool/node:14.1-alpine
 
 8. Postar nos comentários do vídeo a URL da sua imagem para que possamos executar
 --
+https://hub.docker.com/repository/docker/sftool/node
+
+* Deletar containers do Docker
+docker images
+docker rmi <IMAGE> -f
