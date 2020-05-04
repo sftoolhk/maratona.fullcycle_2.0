@@ -13,7 +13,7 @@ dnf config-manager --set-enabled updates-testing
 
 2. Criar um webserver que escuta na porta 3000
 --
-vim http_demo_server.js
+vim http_server.js
 
 var http = require('http');
 http.createServer(function (req, res) {
@@ -22,14 +22,14 @@ http.createServer(function (req, res) {
 }).listen(3000, "127.0.0.1");
 console.log('Server running at http://127.0.0.1:3000/');
 
-node --inspect http_demo_server.js
+node --inspect http_server.js
 
 3. Ao acessar o webserver, a seguinte mesagem deverá aparecer: "Maratona Full Cycle 2.0"
 --
 netstat -nptl
 kill -9 <pid>
 
-vim http_demo_server.js
+vim http_server.js
 
 var http = require('http');
 http.createServer(function (req, res) {
@@ -38,7 +38,7 @@ http.createServer(function (req, res) {
   }).listen(3000, "127.0.0.1");
 console.log('Server running at http://127.0.0.1:3000/');
 
-node --inspect http_demo_server.js
+node --inspect http_server.js
 
 http://127.0.0.1:3000
 
