@@ -2,13 +2,81 @@ API no Nest.js com TypeORM
 
 Nesse desafio você dará um passo além e criará um endpoint Rest com a listagem de todas aulas da Maratona Full Cycle 2.0 (utilize o menu do site: maratona.fullcycle.com.br).
 
-Requisitos
+1. Requisitos
 Nest.js
 TypeORM
 Migrations
 Banco de dados: SQLite
 
-Detalhes
+--
+pip install requests
+
+npm i -g @nestjs/cli
+nest new project-name
+
+ou
+
+git clone https://github.com/nestjs/typescript-starter.git project
+cd project
+npm install
+npm run start
+
+Crie um diretório ts-example e dentro dele um registrar diretório.
+
+mkdir ts-example 
+cd ts-example 
+mkdir registrador 
+cd registrador 
+npm init 
+
+Isso inicializa o package.json .
+
+npm install @ types / node --save-dev 
+npm install typescript ts-node --save-dev 
+npm instalar typeorm sqlite3 reflect-metadata --save
+
+Crie um arquivo chamado tsconfig.json contendo:
+
+ { 
+ "compiladorOptions": { 
+ "lib": ["es5", "es6", "es7", 
+ "es2015", "es2016", 
+ "es2017", "es2018", 
+ "esnext"], 
+ "target": "es2017", 
+ "módulo": "commonjs", 
+ "moduleResolution": "Node", 
+ "outDir": "./dist", 
+ "rootDir": "./lib", 
+ "declaração": verdade, 
+ "declarationMap": verdadeiro 
+ "inlineSourceMap": verdadeiro 
+ "inlineSources": true 
+ "emitDecoratorMetadata": true, 
+ "experimentalDecorators": true 
+ } 
+ } 
+ 
+ Nós temos uma pequena mudança para fazer no package.json :
+
+ { 
+ ... 
+ "main": "dist / index.js", 
+ "tipos": "./dist/index.d.ts", 
+ "tipo": "commonjs", 
+ "scripts": { 
+ "build": "tsc", 
+ "watch": "tsc - watch", 
+ "teste": "teste de cd && npm teste de execução" 
+ } 
+ ... 
+ } 
+ 
+*https://www.agatetepe.com.br/guia-completo-para-usar-typeorm-e-typescript-para-persistencia-de-dados-no-modulo-node-js/
+*https://codersera.com/blog/nestjs-typeorm-graphql-dataloader-tutorial-with-typescript/
+*https://www.youtube.com/watch?v=JfIvPDPUFo4
+
+2. Detalhes
 Estrutura do banco de dados: Tabela: maratona. Campos: id, aula.
 Endpoint: "/maratona" com a opção de listar (GET) e inserir (POST)
 
@@ -23,7 +91,7 @@ Suba o container no DockerHub
 Poste sua imagem nos comentários do site: maratona.fullcycle.com.br
 Quando executarmos: "docker run -p 3000:3000 seu-login-docker/nome-da-sua-imagem" deveremos ter acesso a API na porta 3000
 
-Dicas
+3. Dicas
 Coloque o arquivo do banco de dados gerado pelo SQLite na raiz do projeto (não esqueça de copiá-lo para dentro do container em conjunto com a pasta dist). Utilize a configuração abaixo no arquivo: "app.module.ts"
 TypeOrmModule.forRoot({
     type: 'sqlite',
